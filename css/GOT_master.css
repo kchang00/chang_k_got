@@ -36,7 +36,9 @@ main {
 	overflow:hidden;
 }
 
-#houseImages {position:relative; width:4000px; transition: all .5s; }
+/* CSS animations and Greensock animations cannot be on the same element */
+
+#houseImages {position:relative; width:4000px; /*transition: all .5s; */}
 #houseImages img { float:left; }
 
 #bottomNav { margin-top:30px; }
