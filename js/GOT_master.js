@@ -1,6 +1,9 @@
 (() => {
 	console.log("working");
 
+	// greensock, Timeline and TweenMax under the doc link - tells you examples, how to add functions while TweenMax is done
+	// https://cdnjs.com/libraries/gsap
+
 	// variable stack
 	// grab the shields at the bottom of the page
 	const 	shields 	= document.querySelectorAll('.sigil-container'),
@@ -41,10 +44,11 @@
 
 		// total distance the images need to move in a pixel value
 		// data.offset is comming from each shield we click on
-		totalOffset = this.dataset.offset * offSet + "px";
+		totalOffset = this.dataset.offset * offSet; // + "px";
 
 		//set the style (CSS will animate this for us)
-		banners.style.right = totalOffset;
+		// banners.style.right = totalOffset;
+		TweenMax.to(banners, 0.8, {right: totalOffset});
 	}
 
 	// shields.forEach(shield => shield.addEventListener('click', showLightbox));
