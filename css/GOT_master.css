@@ -22,18 +22,38 @@ h1 {
 }
 
 main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	position:relative;
 	width:100%;
-	text-align:center;
-	top:30px;
+	text-align: center;
+	top:10vh;
+
 }
 
 #imageContainer {
 	width:600px;
 	height:360px;
 	background-color:grey;
-	margin:0 auto;
+	margin:50px auto 0px auto;
 	overflow:hidden;
+}
+
+/* ----- text ----- */
+
+.house-name {
+	font-size: 1.5em;
+}
+
+.house-info {
+	color: #fff;
+	margin: 20px auto;
+	font-size: 1.3em;
+	padding: 0px 150px;
+	line-height: 1.5em;
+	text-align: justify;
+	max-width: 960px;
 }
 
 /* CSS animations and Greensock animations cannot be on the same element */
