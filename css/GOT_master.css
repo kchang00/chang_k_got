@@ -10,6 +10,11 @@
 /* ----- end custom font ----- */
 
 /* ----- default styles ----- */
+
+.hidden {
+	display: none;
+}
+
 body { background-image:url(../images/grungeBG.jpg);
 	background-repeat:no-repeat; background-position:center center;
 	background-color:#000000; font-size:16px; }
@@ -22,23 +27,43 @@ h1 {
 }
 
 main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	position:relative;
 	width:100%;
-	text-align:center;
-	top:30px;
+	text-align: center;
+	top:10vh;
+
 }
 
 #imageContainer {
 	width:600px;
 	height:360px;
 	background-color:grey;
-	margin:0 auto;
+	margin:50px auto 0px auto;
 	overflow:hidden;
+}
+
+/* ----- text ----- */
+
+.house-name {
+	font-size: 1.5em;
+}
+
+.house-info {
+	color: #fff;
+	margin: 20px auto;
+	font-size: 1.3em;
+	padding: 0px 150px;
+	line-height: 1.5em;
+	text-align: justify;
+	max-width: 960px;
 }
 
 /* CSS animations and Greensock animations cannot be on the same element */
 
-#houseImages {position:relative; width:4000px; /*transition: all .5s; */}
+#houseImages {position:relative; width:5400px; /*transition: all .5s; */}
 #houseImages img { float:left; }
 
 #bottomNav { margin-top:30px; }
@@ -58,30 +83,40 @@ main {
 	height:54px;
 	display:inline-block;
 	overflow:hidden;
-	background-image:url(../images/GOT_sprites.png);
+	background-image:url(../images/GOT_sprites_v2.png);
 	background-repeat:no-repeat;
 	transition:transform .3s;
 	-webkit-transition:-webkit-transform .3s;
 	-moz-transition:-moz-transform .3s;
 }
 
-.stark { background-position:0px -54px; }
-.stark:hover { background-position:0px 0px; }
+.stark { background-position:-2px -54px; }
+.stark:hover { background-position:-2px 0px; }
 
-.baratheon { background-position:-50.5px -54px; }
-.baratheon:hover { background-position:-51px 0px; }
+.baratheon { background-position:-51.5px -54px; }
+.baratheon:hover { background-position:-51.5px 0px; }
 
-.lannister { background-position:-101px -54px; }
-.lannister:hover { background-position:-101px 0px; }
+.lannister { background-position:-103px -54px; }
+.lannister:hover { background-position:-103px 0px; }
 
-.tully { background-position:-152px -54px; }
-.tully:hover { background-position:-152px 0px; }
+.tully { background-position:-153.5px -54px; }
+.tully:hover { background-position:-153.5px 0px; }
 
-.greyjoy { background-position:-202px -54px; }
-.greyjoy:hover { background-position:-202px 0px; }
+.greyjoy { background-position:-204px -54px; }
+.greyjoy:hover { background-position:-204px 0px; }
 
-.arryn { background-position:-253px -54px; }
-.arryn:hover { background-position:-253px 0px; }
+.arryn { background-position:-255px -54px; }
+.arryn:hover { background-position:-255px 0px; }
+
+.targeryen { background-position:-305px -54.5px; }
+.targeryen:hover { background-position:-305px -1px; }
+
+.frey { background-position:-356.5px -54.3px; }
+.frey:hover { background-position:-356.5px 0px; }
+
+.tyrell { background-position:-409px -54px; }
+.tyrell:hover { background-position:-409px 0px; }
+
 /* ----- end image sprite ----- */
 
 /* ----- classes for transitions ----- */
@@ -102,7 +137,7 @@ main {
 .lightbox {
 	position: absolute;
 	top: 0;
-	height: 100%;
+	height: 130vh;
 	width: 100%;
 	text-align: center;
 	background: rgba(0,0,0,1);
