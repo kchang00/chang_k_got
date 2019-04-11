@@ -45,6 +45,24 @@ main {
 	overflow: hidden;
 }
 
+#thronesTitle {
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+#thronesTitle img{
+	margin: 40px 40px;
+}
+
+.flippedImg {
+	-moz-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
 /* ----- text ----- */
 
 .house-name {
@@ -147,7 +165,7 @@ main {
 .show-lightbox {
 	display: block;
 	background: rgba(0,0,0,1);
-	height: 100vh;
+	height: 150vh;
 }
 
 

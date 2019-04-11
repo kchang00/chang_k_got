@@ -9,6 +9,7 @@
 	const 	shields 			= document.querySelectorAll('.sigil-container'),
 			lightBox 			= document.querySelector('.lightbox'),
 			video				= document.querySelector('video'),
+			houseIcon 			= document.querySelectorAll('.houseIcon'), 
 			closeLB 			= document.querySelector('.lightbox-close'),
 			banners				= document.querySelector('#houseImages'),
 			houseName			= document.querySelector('.house-name'),
@@ -65,7 +66,7 @@
 
 		video.load();
 		video.play();
-		}, 1500);
+		}, 3000);
 	}
 
 	function hideLightbox() {
@@ -91,6 +92,27 @@
 		//set the style (CSS will animate this for us)
 		// banners.style.right = totalOffset;
 		TweenMax.to(banners, 0.8, {right: totalOffset});
+	}
+
+	function animateTitle() {
+		let targetIcon = this.className.split(" ")[1];
+
+		houseIcon.forEach(icon => {
+			icon.src = `images/${targetIcon}.svg`;
+		});
+	}
+
+	function animImage() {
+		// element, time, properties
+		// TweenMax.to(el, time, {props});
+		var tl = new TimelineMax({paused: true});
+
+		TweenMax.from(houseIcon, 2, 
+			{ 	y: 75,
+				rotation: '+=360',
+				ease:Back.easeInOut,
+				opacity: 0,
+			});
 	}
 
 	function playPause() {
@@ -160,9 +182,11 @@
 	function videoPause() {
 		video.pause();
 	}
-
-	shields.forEach(shield => shield.addEventListener('click', showLightbox));
+	window.addEventListener('load', animImage);
 	shields.forEach(shield => shield.addEventListener('click', animateBanner));
+	shields.forEach(shield => shield.addEventListener('click', animateTitle));
+	shields.forEach(shield => shield.addEventListener('click', showLightbox));
+	shields.forEach(shield => shield.addEventListener('click', animImage));
 
 	video.addEventListener('ended', hideLightbox);
 	closeLB.addEventListener('click', hideLightbox);
