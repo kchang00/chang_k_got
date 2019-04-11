@@ -6,13 +6,19 @@
 
 	// variable stack
 	// grab the shields at the bottom of the page
-	const 	shields 	= document.querySelectorAll('.sigil-container'),
-			lightBox 	= document.querySelector('.lightbox'),
-			video		= document.querySelector('video'),
-			closeLB 	= document.querySelector('.lightbox-close'),
-			banners		= document.querySelector('#houseImages'),
-			houseName	= document.querySelector('.house-name'),
-			houseInfo	= document.querySelector('.house-info');
+	const 	shields 			= document.querySelectorAll('.sigil-container'),
+			lightBox 			= document.querySelector('.lightbox'),
+			video				= document.querySelector('video'),
+			closeLB 			= document.querySelector('.lightbox-close'),
+			banners				= document.querySelector('#houseImages'),
+			houseName			= document.querySelector('.house-name'),
+			houseInfo			= document.querySelector('.house-info'),
+			playButton			= document.querySelector('#play-pause'),
+			muteButton 			= document.querySelector('#mute'),
+			fullScreenButton	= document.querySelector('#full-screen'),
+			timeBar 			= document.querySelector('#time-bar'),
+			volumeBar 			= document.querySelector('#volume-bar');
+
 	// multidimensional array
 	const	houseData = [
 		[`STARK`, `House Stark of Winterfell is a Great House of Westeros, ruling over the vast region known as the North from their seat in Winterfell. It is one of the oldest lines of Westerosi nobility by far, claiming a line of descent stretching back over eight thousand years. Before the Targaryen conquest, as well as during the War of the Five Kings and Daenerys Targaryen's invasion of Westeros, the leaders of House Stark ruled over the region as the Kings in the North.`],
@@ -87,10 +93,91 @@
 		TweenMax.to(banners, 0.8, {right: totalOffset});
 	}
 
+	function playPause() {
+		if (video.paused == true) {
+			// Play the video
+			video.play();
+
+			// Update the button text to 'Pause'
+			playButton.innerHTML = "Pause";
+		} else {
+			// Pause the video
+			video.pause();
+
+			// Update the button text to 'Play'
+			playButton.innerHTML = "Play";
+		}
+	}
+
+	function muteUnmute() {
+		if (video.muted == false) {
+			// Mute the video
+			video.muted = true;
+
+			volumeBar.value = 0;
+			muteButton.innerHTML = "Unmute";
+		} else {
+			// Unmute the video
+			video.muted = false;
+
+			volumeBar.value = video.volume;
+			muteButton.innerHTML = "Mute";
+		}
+	}
+
+	function fullScreen() {
+		if (video.requestFullscreen) {
+			video.requestFullscreen();
+		} else if (video.mozRequestFullScreen) {
+			video.mozRequestFullScreen(); // Firefox
+		} else if (video.webkitRequestFullscreen) {
+			video.webkitRequestFullscreen(); // Chrome and Safari
+		}
+	}
+
+	function timeTracker() {
+		// Calculate the new time
+		var totalTime = video.duration * (timeBar.value / 100);
+
+		// Update the video time
+		video.currentTime = totalTime;
+	}
+
+	// Updates the seek bar as the video plays
+	function timeUpdater() {
+		// Calculate the slider value
+		var totalValue = (100 / video.duration) * video.currentTime;
+
+		// Update the slider value
+		timeBar.value = totalValue;
+	}
+
+	function volumeChange() {
+		// Update video volume
+		video.volume = volumeBar.value;
+	}
+
+	function videoPause() {
+		video.pause();
+	}
+
 	shields.forEach(shield => shield.addEventListener('click', showLightbox));
 	shields.forEach(shield => shield.addEventListener('click', animateBanner));
 
 	video.addEventListener('ended', hideLightbox);
 	closeLB.addEventListener('click', hideLightbox);
+
+	// video event listeners
+
+	playButton.addEventListener('click', playPause);
+	video.addEventListener('click', playPause);
+	muteButton.addEventListener('click', muteUnmute);
+	fullScreenButton.addEventListener('click', fullScreen);
+	timeBar.addEventListener('change', timeTracker);
+	video.addEventListener('timeupdate', timeUpdater);
+	// pauses timebar when user is dragging handle
+	timeBar.addEventListener('mousedown', videoPause);
+	timeBar.addEventListener('mouseup', playPause);
+	volumeBar.addEventListener('change', volumeChange);
 
 })();
