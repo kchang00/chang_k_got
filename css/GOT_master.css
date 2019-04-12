@@ -54,6 +54,7 @@ main {
 
 #thronesTitle img{
 	margin: 40px 40px;
+	max-width: 500px;
 }
 
 .flippedImg {
@@ -77,6 +78,7 @@ main {
 	line-height: 1.5em;
 	text-align: justify;
 	max-width: 960px;
+	margin-bottom: 100px;
 }
 
 /* CSS animations and Greensock animations cannot be on the same element */
@@ -153,6 +155,7 @@ main {
 
 /* add styles here for lightbox and video */
 .lightbox {
+	display: flex;
 	position: absolute;
 	top: 0;
 	height: 100%;
@@ -165,7 +168,7 @@ main {
 .show-lightbox {
 	display: block;
 	background: rgba(0,0,0,1);
-	height: 150vh;
+	height: 200vh;
 }
 
 
@@ -179,8 +182,8 @@ video {
 .lightbox-close {
 	position: absolute;
 	color: #fff;
-	right: 5%;
-	top: 10%;
+	right: 50px;
+	top: 50px;
 	cursor: pointer;
 	font-size: 2em;
 	padding: 10px 17px;
